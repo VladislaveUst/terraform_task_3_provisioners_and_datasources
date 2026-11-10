@@ -1,24 +1,20 @@
-data "azurerm_resource_group" "example" {
-  name = var.resource_group_name
-}
-
 data "azurerm_virtual_network" "main" {
-  name                = azurerm_virtual_network.main.name
-  resource_group_name = data.azurerm_resource_group.example.name
+  name                = var.virtual_network_name
+  resource_group_name = var.resource_group_name
 }
 
 data "azurerm_subnet" "internal" {
-  name                 = azurerm_subnet.internal.name
-  virtual_network_name = data.azurerm_virtual_network.main.name
-  resource_group_name  = data.azurerm_resource_group.example.name
+  name                 = var.subnet_name
+  virtual_network_name = var.virtual_network_name
+  resource_group_name  = var.resource_group_name
 }
 
 data "azurerm_network_interface" "main" {
-  name                = azurerm_network_interface.main.name
-  resource_group_name = data.azurerm_resource_group.example.name
+  name                = var.network_interface_name
+  resource_group_name = var.resource_group_name
 }
 
 data "azurerm_virtual_machine" "main" {
-  name                = azurerm_linux_virtual_machine.main.name
-  resource_group_name = data.azurerm_resource_group.example.name
+  name                = var.virtual_machine_name
+  resource_group_name = var.resource_group_name
 }
